@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git url:"https://github.com/Javed-Patel-wohlig/test-commit-4.git", branch:"main"
+                git url:"https://github.com/Javed-Patel-wohlig/test-gitops", branch:"main"
             }
         }
 
