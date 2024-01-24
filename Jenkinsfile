@@ -28,7 +28,8 @@ pipeline {
                     
                         def commit_count = sh(script: "grep -oE '(commit count is: )([0-9]+)' count.txt | cut -d' ' -f4", returnStdout: true).trim()
                         def new_commit_count = commit_count.toInteger() + 50
-                        sh "sed -i 's/my commit count is: [0-9]\\+/my commit count is: ${new_commit_count}/' count.txt"
+                        //sh "sed -i 's/my commit count is: [0-9]\\+/my commit count is: ${new_commit_count}/' count.txt"
+                        sh "${new_commit_count}"
                     
                 }
             }
