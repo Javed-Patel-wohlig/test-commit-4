@@ -24,14 +24,14 @@ pipeline {
         }
         stage('Update Count') {
             steps {
-                script {
-                    
-                        def commit_count = sh(script: "grep -oE '(commit count is: )([0-9]+)' count.txt | cut -d' ' -f4", returnStdout: true).trim()
-                        def new_commit_count = commit_count.toInteger() + 50
-                        //sh "sed -i 's/my commit count is: [0-9]\\+/my commit count is: ${new_commit_count}/' count.txt"
-                        sh "${new_commit_count}"
-                    
-                }
+                    //sh "sed -i 's/my commit count is: [0-9]\\+/my commit count is: ${new_commit_count}/' count.txt"
+                    sh '''
+                    commit_count=$(grep -oP '(?<=commit count is: )\d+' count.txt)
+                    new_commit_count=$((commit_count + 50))
+                    echo "hello i am devops" > count.txt
+                    echo "my commit count is: $new_commit_count" >> count.txt
+                    echo "thank you" >> count.txt
+                    '''
             }
         }
         stage('Git pushing the update') {
