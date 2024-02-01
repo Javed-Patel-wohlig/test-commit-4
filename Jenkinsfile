@@ -35,8 +35,7 @@ pipeline {
         }
         stage('Git pushing the update') {
             steps { 
-                    sh 
-                    '''
+                    sh '''
                         git add .
                         git commit -m "update new count"
                         git push origin main
